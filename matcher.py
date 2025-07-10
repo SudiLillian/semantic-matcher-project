@@ -10,7 +10,7 @@ class Matcher:
         self.texts = profiles_df["text"].tolist()
 
         # custom stop-words
-        my_stop_words = text.ENGLISH_STOP_WORDS.union(
+        my_stop_words = list(text.ENGLISH_STOP_WORDS.union(
             {"ai", "and", "the", "research", "researcher"}
         )
 

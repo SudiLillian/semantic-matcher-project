@@ -7,11 +7,12 @@ class Matcher:
         self.ids = profiles_df['id'].tolist()
         self.texts = profiles_df['text'].tolist()
         self.vectorizer = TfidfVectorizer(
-            stop_words='english',
+            stop_words='None',
             ngram_range=(1, 2),
-            max_features=3000,
+            max_features=5000,
         )
         self.tfidf_matrix = self.vectorizer.fit_transform(self.texts)
+
 
     def match(self, query: str, top_n: int = 5):
         q_vec = self.vectorizer.transform([query])

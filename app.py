@@ -40,10 +40,10 @@ if query:
 
     		# ----- plotting -----
     		fig, ax = plt.subplots(figsize=(6, 4))
-    		bar_colors = ['steelblue' if v > 0 else 'salmon' for v in vals]
+    		bar_colors = ['steelblue'] * len(vals)
 
     		# height=0.4 → thinner bars
-    		ax.barh(tokens, vals, height=0.4, color=bar_colors, edgecolor='black')
+    		ax.barh(tokens, vals, height=0.25, color=bar_colors, edgecolor='black')
 
     		ax.set_xlabel('Normalised contribution')
     		ax.invert_yaxis()             # highest bar at top

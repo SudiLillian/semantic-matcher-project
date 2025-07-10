@@ -24,11 +24,9 @@ if query:
     for idx, (rid, text, score) in enumerate(results):
         with st.expander(f'{idx+1}. **{rid}** — Score {score:.3f}'):
             st.write(text)
-            
-            
             if st.button('Explain ▶️', key=f'btn_{idx}'):
                 doc_idx = matcher.ids.index(rid)
-                tokens, shap_vals = explainer.explain(query, doc_idx, top_k=15)
+                tokens, shap_vals = explainer.explain(query, doc_idx)
                 fig, ax = plt.subplots()
                 colors = ['red' if v > 0 else 'blue' for v in shap_vals]
                 ax.barh(tokens, shap_vals, color=colors)

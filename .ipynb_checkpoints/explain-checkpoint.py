@@ -27,7 +27,7 @@ class Explainer:
         # query_vec comes in dense; (m, d) → (m, N_docs)
         return cosine_similarity(query_vec, self.tfidf_matrix)
 
-    def explain(self, query_text, doc_index, top_k=10):
+    def explain(self, query_text, doc_index, top_k=30):
         """
         Returns top-k tokens and their Shapley values for similarity between
         `query_text` and document at `doc_index`.
@@ -37,6 +37,7 @@ class Explainer:
         token_names = self.vectorizer.get_feature_names_out()
 
         doc_shap = shap_vals.values[0][doc_index]    # (d,)
-        idx = np.argsort(np.abs(doc_shap))[::-1][:top_k]
+        idx = np.argsort(np.abs(doc_shap))[::-1][:top_k] 
+        scaled = doc_shap[idx] * 50    
         return token_names[idx], doc_shap[idx]
 

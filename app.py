@@ -1,13 +1,13 @@
 ﻿import streamlit as st
 import pandas as pd
 from matcher import Matcher
-# from explain import Explainer        # ← old SHAP version
-from explain_fast import Explainer     # ← deterministic version
+# from explain import Explainer        # ? old SHAP version
+from explain_fast import Explainer     # ? deterministic version
 import matplotlib.pyplot as plt
 
 #  UI CONFIG 
-st.set_page_config(page_title="Semantic Profile Matcher", page_icon="🔍")
-st.title("🔍 Semantic Profile Matcher")
+st.set_page_config(page_title="Semantic Profile Matcher", page_icon="??")
+st.title("?? Semantic Profile Matcher")
 
 #  Load CSV (upload or fallback) 
 uploaded = st.file_uploader("Upload CSV with columns id,text", type="csv")
@@ -34,7 +34,7 @@ if query:
         with st.expander(f"{idx + 1}. **{rid}** — Score {score:.3f}"):
             st.write(text)
 
-            if st.button("Explain ▶️", key=f"btn_{idx}"):
+            if st.button("Explain ??", key=f"btn_{idx}"):
                 doc_idx = matcher.ids.index(rid)
 
                 # ----- token contributions -----

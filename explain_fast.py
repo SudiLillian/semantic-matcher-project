@@ -1,4 +1,4 @@
-# explain_fast.py – simple, instant, always informative
+﻿# explain_fast.py â€“ simple, instant, always informative
 import numpy as np
 
 class Explainer:

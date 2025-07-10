@@ -3,21 +3,24 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction import text
 
+
 class Matcher:
     def __init__(self, profiles_df: pd.DataFrame):
         # store ids and texts
         self.ids   = profiles_df["id"].tolist()
         self.texts = profiles_df["text"].tolist()
 
-        # custom stop-words
-        my_stop_words = list(text.ENGLISH_STOP_WORDS.union(
-            {"ai", "and", "the", "research", "researcher"}
+        # custom stop-words  (now with closing parenthesis)
+        my_stop_words = list(
+            text.ENGLISH_STOP_WORDS.union(
+                {"ai", "and", "the", "research", "researcher"}
+            )
         )
 
         # fit TF-IDF
         self.vectorizer = TfidfVectorizer(
             stop_words=my_stop_words,
-            ngram_range=(1, 2),      # unigrams + bigrams
+            ngram_range=(1, 2),          # unigrams + bigrams
             max_features=5000,
             min_df=1,
             sublinear_tf=True,

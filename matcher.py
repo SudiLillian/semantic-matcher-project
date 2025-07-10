@@ -7,7 +7,7 @@ class Matcher:
         self.ids = profiles_df['id'].tolist()
         self.texts = profiles_df['text'].tolist()
         self.vectorizer = TfidfVectorizer(
-            stop_words='None',
+            stop_words=None,
             ngram_range=(1, 2),
             max_features=5000,
         )

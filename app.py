@@ -1,15 +1,14 @@
 ﻿import streamlit as st
 import pandas as pd
 from matcher import Matcher
-# from explain import Explainer        # ? old SHAP version
-from explain_fast import Explainer     # ? deterministic version
+from explain_fast import Explainer
 import matplotlib.pyplot as plt
 
-#  UI CONFIG 
-st.set_page_config(page_title="Semantic Profile Matcher", page_icon="??")
-st.title("?? Semantic Profile Matcher")
+# ─────────── UI CONFIG ───────────
+st.set_page_config(page_title="Semantic Profile Matcher", page_icon="🔍")
+st.title("🔍 Semantic Profile Matcher")
 
-#  Load CSV (upload or fallback) 
+# ─────────── Load CSV ────────────
 uploaded = st.file_uploader("Upload CSV with columns id,text", type="csv")
 if not uploaded:
     st.info("Using bundled sample_profiles.csv")
@@ -17,11 +16,11 @@ if not uploaded:
 
 profiles_df = pd.read_csv(uploaded)
 
-#  Build matcher & explainer 
+# ─────────── Build matcher & explainer ───────────
 matcher   = Matcher(profiles_df)
 explainer = Explainer(matcher.vectorizer, matcher.tfidf_matrix)
 
-#  Query box 
+# ─────────── Query box ────────────
 query = st.text_input("Enter a search query")
 
 if query:
@@ -34,7 +33,7 @@ if query:
         with st.expander(f"{idx + 1}. **{rid}** — Score {score:.3f}"):
             st.write(text)
 
-            if st.button("Explain ??", key=f"btn_{idx}"):
+            if st.button("Explain ▶️", key=f"btn_{idx}"):
                 doc_idx = matcher.ids.index(rid)
 
                 # ----- token contributions -----
@@ -46,11 +45,14 @@ if query:
 
                 # ----- plotting -----
                 fig, ax = plt.subplots(figsize=(6, 4))
-                bar_colors = ["steelblue"] * len(vals)      # all bars blue
-                ax.barh(tokens, vals, height=0.25, color=bar_colors, edgecolor="black")
-
+                ax.barh(
+                    tokens, vals,
+                    height=0.25,          # thinner bars
+                    color="steelblue",    # all bars blue
+                    edgecolor="black"
+                )
                 ax.set_xlabel("Normalised contribution")
                 ax.invert_yaxis()        # highest bar at top
-                ax.set_xlim(0, 1)        # bars span 0–1
+                ax.set_xlim(0, 1)
 
                 st.pyplot(fig)

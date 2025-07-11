@@ -1,3 +1,4 @@
-﻿"prof_med,""Senior researcher in medical imaging, tumor segmentation with PyTorch U-Nets and MRI acquisition"""
-"prof_nlp,""NLP engineer building question-answering systems with transformers and spaCy"""
-"prof_rl,""Reinforcement learning expert tuning policies with OpenAI Gym and stable-baselines3"""
+﻿id,text
+p1,I work on explainable AI and model calibration.
+p2,Researcher in NLP and semantic search.
+p3,Expert in time-series classification and forecasting.

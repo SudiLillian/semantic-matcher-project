@@ -13,7 +13,7 @@ class Matcher:
         # custom stop-words  (now with closing parenthesis)
         my_stop_words = list(
             text.ENGLISH_STOP_WORDS.union(
-                {"ai", "and", "the", "research", "researcher"}
+                {"and", "the", "is"}
             )
         )
 

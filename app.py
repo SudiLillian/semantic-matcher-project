@@ -5,8 +5,8 @@ from explain_fast import Explainer
 import matplotlib.pyplot as plt
 
 # ─────────── UI CONFIG ───────────
-st.set_page_config(page_title="Semantic Profile Matcher", page_icon="🔍")
-st.title("🔍 Semantic Profile Matcher")
+st.set_page_config(page_title="LEAP Profile Matcher", page_icon="🔍")
+st.title("🔍 LEAP Profile Matcher")
 
 # ─────────── Load CSV ────────────
 uploaded = st.file_uploader("Upload CSV with columns id,text", type="csv")

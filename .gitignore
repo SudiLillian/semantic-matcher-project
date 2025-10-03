@@ -1,0 +1,25 @@
+﻿# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Jupyter notebooks
+*.ipynb
+
+# Backup/copy files
+*-Copy.py
+*-checkpoint.*
+
+# Data files (except the main one)
+data/*.xlsx
+data/sample_profiles_1.xlsx
+
+# PDFs
+*.pdf
+
+# OS files
+.DS_Store
+Thumbs.db
